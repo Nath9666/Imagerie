@@ -1,13 +1,14 @@
 #include "EdStructures.h"
 #include "EdUtilities.h"
 
-int ScanVois3(EdIMAGE *image, EdIMAGE *imres)
+int Mean_Filtering(EdIMAGE *image, EdIMAGE *imres)
 {
   // current and neighbour (voisin in French) point creation 
   EdPOINT	*point = NULL, *pointv = NULL;
   // index of lines and columns of the 3X3 neighbourhood
-  int	i,j;                             
-  unsigned char uc; /* example of pixel read and write ... */
+  int	i,j; 
+
+  int moy; // mean value of the 3X3 neighbourhood                            
 
 
   if(crea_POINT(point) == NULL)          /* Memory Allocation of point */
@@ -27,10 +28,10 @@ int ScanVois3(EdIMAGE *image, EdIMAGE *imres)
            POINT_X(point)++)
   {
     POINT_Y(point) = 0;                  /* first line */
-    PIXEL(imres, point) = 0;
+    PIXEL(imres, point) = PIXEL(imres, point);
 
     POINT_Y(point) = NLIG(image) - 1;    /* last line */
-    PIXEL(imres, point) = 0;
+    PIXEL(imres, point) = PIXEL(imres, point);
   } /*--- End of copy of first and last lines --- */
 
   for(POINT_Y(point) = 0; POINT_Y(point) < NLIG(image);
@@ -51,6 +52,7 @@ int ScanVois3(EdIMAGE *image, EdIMAGE *imres)
            POINT_X(point)++)
   {
     /* --- ... Initialisation  ... */
+    moy = 0;
     /* ---  Video Scan of the 3x3 neighbourhood --- */
     for(j = 0; j < 3; j++)
     for(i = 0; i < 3; i++)
@@ -59,11 +61,11 @@ int ScanVois3(EdIMAGE *image, EdIMAGE *imres)
       POINT_X(pointv) = POINT_X(point) + i - 1;
       POINT_Y(pointv) = POINT_Y(point) + j - 1;
 
-      uc = PIXEL(image, pointv);
+      moy += PIXEL(image, pointv);
     } /* --- End of the Neighbourhood Video Scan --- */
+    moy /= 9;
 
-
-    PIXEL(imres, point) = PIXEL(image, point);
+    PIXEL(imres, point) = (unsigned char) moy;
   }/* --- End of the Image Video Scan --- */
   /* --- Memory Free  --- */
   free((void *)pointv);

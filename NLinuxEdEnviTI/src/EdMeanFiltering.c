@@ -12,11 +12,10 @@ int main(int argc, char **argv)
   /* --- USAGE --- */
   if(argc != 3)
   {
-    fprintf(stderr,"USAGE :  ScanVois3 image immoy \n");
+    fprintf(stderr,"USAGE :  Mean Filtering image immoy \n");
     fprintf(stderr,"image : name of the image to filter \n");
     fprintf(stderr,"immoy : name of the result image \n");
     fprintf(stderr,"Scan of Image and 3 by 3 pixel neighbourhood of B&W image \n");
-    fprintf(stderr,"Here : simple copy \n");
     exit(0);
   }
   /* --- Source Image --- */
@@ -78,7 +77,7 @@ int main(int argc, char **argv)
   }
   
 /* --- Example of Image Scan using 3 by 3 neighbourhood --- */
-  ret = ScanVois3 (image, imres);
+  ret = Mean_Filtering (image, imres);
   if (ret)
   {
     fprintf(stderr,"Problem of Memory Allocation in Mean Filtering \n");
@@ -112,5 +111,5 @@ int main(int argc, char **argv)
   fclose (fichier);
   fclose (fichres);
   	
-  fprintf(stderr,"End of ScanVois3 Operator\n");
+  fprintf(stderr,"End of Mean Filtering Operator\n");
 }

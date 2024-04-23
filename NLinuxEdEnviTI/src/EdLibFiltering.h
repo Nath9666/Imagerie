@@ -1,1 +1,1 @@
-int ScanVois3(EdIMAGE *image, EdIMAGE *imres);
+int Mean_Filtering(EdIMAGE *image, EdIMAGE *imres);
