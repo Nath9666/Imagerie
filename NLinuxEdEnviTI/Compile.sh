@@ -34,7 +34,7 @@ fi
 
 # EdMeanFiltering
 if [ ! -f ./bin/EdMeanFiltering ]; then
-    gcc -o ./bin/EdMeanFiltering ./src/EdMeanFiltering.c ./src/EdLibFiltering.c ./src/EdLibFiltering.h ./src/EdUtilities.c 
+    gcc -o ./bin/EdMeanFiltering ./src/EdMeanFiltering.c ./src/EdLibMeanFiltering.c ./src/EdUtilities.c 
     echo "Compilation EdMeanFiltering terminée"
 else
     echo "EdMeanFiltering existe déjà, pas besoin de compiler"
@@ -42,7 +42,7 @@ fi
 
 # EdGaussFiltering
 if [ ! -f ./bin/EdGaussFiltering ]; then
-    gcc -o ./bin/EdGaussFiltering ./src/EdGaussFiltering.c ./src/EdLibGaussFiltering.c ./src/EdLibGaussFiltering.h ./src/EdUtilities.c
+    gcc -o ./bin/EdGaussFiltering ./src/EdGaussFiltering.c ./src/EdLibGaussFiltering.c ./src/EdUtilities.c
     echo "Compilation EdGaussFiltering terminée"
 else
     echo "EdGaussFiltering existe déjà, pas besoin de compiler"
@@ -50,7 +50,7 @@ fi
 
 # EdMedianFiltering
 if [ ! -f ./bin/EdMedianFiltering ]; then
-    gcc -o ./bin/EdMedianFiltering ./src/EdMedianFiltering.c ./src/EdMedianLibFiltering.c ./src/EdMedianLibFiltering.h ./src/EdUtilities.c
+    gcc -o ./bin/EdMedianFiltering ./src/EdMedianFiltering.c ./src/EdLibMedianFiltering.c ./src/EdUtilities.c
     echo "Compilation EdMedianFiltering terminée"
 else
     echo "EdMedianFiltering existe déjà, pas besoin de compiler"

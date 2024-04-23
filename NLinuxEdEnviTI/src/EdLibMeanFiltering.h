@@ -34,4 +34,4 @@
 // ------------------------------------------------------------------
 #include "EdStructures.h"
 #include "EdUtilities.h"
-int ScanVois3(EdIMAGE *image, EdIMAGE *imres);
+int MeanFiltering(EdIMAGE *image, EdIMAGE *imres);

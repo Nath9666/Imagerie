@@ -1,3 +1,37 @@
+// ------------------------------------------------------------------
+/**
+ * @file EdGaussFiltering.c
+ *
+ * @brief Example of Image Scan using 3 by 3 centered neighbourhood
+ * This file is the part "interface with the user" 
+ * 
+ * @author Patrick Bonnin
+ * @email  patrick.bonnin@gmail.com
+ * @date 2022.06.15 : creation.
+ * @date 2022.06.15 : last modification.
+ */
+// ------------------------------------------------------------------
+/* COPYRIGHT (C)	2022, P. Bonnin <patrick.bonnin@gmail.com>
+ *
+ * This  library  is  a free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as  published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This  Library  is  distributed in the hope that it will be useful,
+ * but  WITHOUT  ANY  WARRANTY;  without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULIAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You  should  have received a copy of the GNU Lesser General Public 
+ * License  along  with  this  library;  if  not,  write  to the Free 
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+// ------------------------------------------------------------------
+/* Modifications :
+ * 2022.06.15 : creation
+ */
+// ------------------------------------------------------------------
 #include "EdStructures.h"
 #include "EdUtilities.h"
 #include "EdLibGaussFiltering.h"
@@ -12,10 +46,10 @@ int main(int argc, char **argv)
   /* --- USAGE --- */
   if(argc != 3)
   {
-    fprintf(stderr,"USAGE :  Mean Filtering image immoy \n");
+    fprintf(stderr,"USAGE :  EdMeandFiltering image immoy \n");
     fprintf(stderr,"image : name of the image to filter \n");
     fprintf(stderr,"immoy : name of the result image \n");
-    fprintf(stderr,"Scan of Image and 3 by 3 pixel neighbourhood of B&W image \n");
+    fprintf(stderr,"Mean Filtering B&W image \n");
     exit(0);
   }
   /* --- Source Image --- */
@@ -77,10 +111,10 @@ int main(int argc, char **argv)
   }
   
 /* --- Example of Image Scan using 3 by 3 neighbourhood --- */
-  ret = Gauss_Filtering (image, imres);
+  ret = GaussFiltering (image, imres);
   if (ret)
   {
-    fprintf(stderr,"Problem of Memory Allocation in Mean Filtering \n");
+    fprintf(stderr,"Problem of Memory Allocation in Gauss Filtering \n");
     exit(0);
   } 
 
@@ -111,5 +145,5 @@ int main(int argc, char **argv)
   fclose (fichier);
   fclose (fichres);
   	
-  fprintf(stderr,"End of Mean Filtering Operator\n");
+  fprintf(stderr,"End of EdGaussFiltering Operator\n");
 }

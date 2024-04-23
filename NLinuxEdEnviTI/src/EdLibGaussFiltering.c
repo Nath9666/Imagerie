@@ -1,14 +1,48 @@
+// ------------------------------------------------------------------
+/**
+ * @file EdLibScanVois3.c
+ *
+ * @brief Example of Image scan
+ * using 3 by 3 pixel neighbourhood
+ * This file is the part "Operator" itself
+ *
+ * @author Patrick Bonnin
+ * @email  patrick.bonnin@gmail.com
+ * @date 2022.06.15 : creation.
+ * @date 2022.06.15 : last modification.
+ */
+// ------------------------------------------------------------------
+/* COPYRIGHT (C)	2022, P. Bonnin <patrick.bonnin@gmail.com>
+ *
+ * This  library  is  a free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as  published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This  Library  is  distributed in the hope that it will be useful,
+ * but  WITHOUT  ANY  WARRANTY;  without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULIAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ *
+ * You  should  have received a copy of the GNU Lesser General Public
+ * License  along  with  this  library;  if  not,  write  to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+// ------------------------------------------------------------------
+/* Modifications :
+ * 2022.06.15 : creation
+ */
+// ------------------------------------------------------------------
 #include "EdStructures.h"
 #include "EdUtilities.h"
 
-int Gauss_Filtering(EdIMAGE *image, EdIMAGE *imres)
+int GaussFiltering(EdIMAGE *image, EdIMAGE *imres)
 {
   // current and neighbour (voisin in French) point creation 
   EdPOINT	*point = NULL, *pointv = NULL;
   // index of lines and columns of the 3X3 neighbourhood
-  int	i,j; 
-
-  int Gauss; // mean value of the 3X3 neighbourhood                            
+  int	i,j;                             
+  int Gauss;
 
 
   if(crea_POINT(point) == NULL)          /* Memory Allocation of point */
@@ -28,10 +62,10 @@ int Gauss_Filtering(EdIMAGE *image, EdIMAGE *imres)
            POINT_X(point)++)
   {
     POINT_Y(point) = 0;                  /* first line */
-    PIXEL(imres, point) = PIXEL(imres, point);
+    PIXEL(imres, point) = PIXEL(image,point);
 
     POINT_Y(point) = NLIG(image) - 1;    /* last line */
-    PIXEL(imres, point) = PIXEL(imres, point);
+    PIXEL(imres, point) = 0;
   } /*--- End of copy of first and last lines --- */
 
   for(POINT_Y(point) = 0; POINT_Y(point) < NLIG(image);
@@ -52,7 +86,7 @@ int Gauss_Filtering(EdIMAGE *image, EdIMAGE *imres)
            POINT_X(point)++)
   {
     /* --- ... Initialisation  ... */
-    Gauss = 0;
+    Gauss = 0; 
     /* ---  Video Scan of the 3x3 neighbourhood --- */
     for(j = 0; j < 3; j++)
     for(i = 0; i < 3; i++)
@@ -65,8 +99,7 @@ int Gauss_Filtering(EdIMAGE *image, EdIMAGE *imres)
     } /* --- End of the Neighbourhood Video Scan --- */
     Gauss += PIXEL(image, point);
     Gauss /= 10;
-
-    PIXEL(imres, point) = (unsigned char) Gauss;
+    PIXEL(imres, point) = (unsigned char)Gauss;
   }/* --- End of the Image Video Scan --- */
   /* --- Memory Free  --- */
   free((void *)pointv);
