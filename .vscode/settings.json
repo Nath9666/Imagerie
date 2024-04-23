@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "edlibsimplescan.h": "c",
+        "edutilities.h": "c"
+    }
+}

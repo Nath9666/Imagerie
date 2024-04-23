@@ -1,0 +1,1 @@
+voir pour QT creator afin de faire une interface graphique
