@@ -2,6 +2,8 @@
 
 Dans ce projet nous utilisont des programme C pour manipuler des images en format PGM.
 
+Si vous n'etes pas familier avec les commandes linux je vous invite à regarder [ce document](./CommandeLinux.md).
+
 ## Compilation
 
 Vous pouvez compiler les programmes avec la commande suivante :
@@ -9,7 +11,7 @@ Vous pouvez compiler les programmes avec la commande suivante :
 ```bash
 cd NLinuxEdEnviTI
 ./compile.sh
-```	
+```
 
 # Execution
 
