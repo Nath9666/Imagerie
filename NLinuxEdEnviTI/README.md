@@ -2,6 +2,24 @@
 
 Dans ce projet nous utilisont des programme C pour manipuler des images en format PGM.
 
+## Compilation
+
+Vous pouvez compiler les programmes avec la commande suivante :
+
+```bash
+cd NLinuxEdEnviTI
+./compile.sh
+```	
+
+# Execution
+
+Vous pouvez executer les programmes avec la commande suivante :
+
+```bash
+cd NLinuxEdEnviTI
+./run.sh
+```
+
 ## Simple Scan
 
 ```bash
