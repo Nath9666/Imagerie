@@ -11,3 +11,9 @@ cd ./bin
 
 # Create the image Mean Filtering
 ./EdMeanFiltering.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitMeanFiltering.pgm
+
+# Create the image Gauss Filtering
+./EdGaussFiltering.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitGaussFiltering.pgm
+
+# Create the image Median Filtering
+./EdMedianFiltering.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitMedianFiltering.pgm
