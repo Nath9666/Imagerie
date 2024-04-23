@@ -1,19 +1,17 @@
 cd ./bin
 
-# Create the image Simple Scan
-./EdSimpleScan.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitSimpleScan.pgm
+# Define the variable
+IMAGE_PATH="../Image/LennaHeadBruit.pgm"
 
-# Create the image Scan Vois 3
-./EdScanVois3.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitScanVois3.pgm
+# Get the base name of the image file
+IMAGE_BASE=$(basename $IMAGE_PATH .pgm)
 
-# Create the image Threshold
-./EdThreshold.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitThreshold.pgm
-
-# Create the image Mean Filtering
-./EdMeanFiltering.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitMeanFiltering.pgm
-
-# Create the image Gauss Filtering
-./EdGaussFiltering.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitGaussFiltering.pgm
-
-# Create the image Median Filtering
-./EdMedianFiltering.exe ../Image/LennaHeadBruit.pgm ../ImRes/LennaHeadBruitMedianFiltering.pgm
+# Iterate over all programs in the directory
+for PROGRAM in ./*.exe
+do
+    # Get the base name of the program
+    PROGRAM_BASE=$(basename $PROGRAM .exe)
+    
+    # Run the program with the image path and output path
+    ./${PROGRAM_BASE}.exe $IMAGE_PATH "../ImRes/${IMAGE_BASE}${PROGRAM_BASE}.pgm"
+done
