@@ -55,3 +55,11 @@ if [ ! -f ./bin/EdMedianFiltering ]; then
 else
     echo "EdMedianFiltering existe déjà, pas besoin de compiler"
 fi
+
+# EdSelection Il faut utiliser l'image : Secateur
+if [ ! -f ./bin/EdSelection ]; then
+    gcc -o ./bin/EdSelection ./src/EdSelection.c ./src/EdHatThreshold.c ./src/EdLibHatThreshold.c ./src/EdLibMorphMath.c ./src/EdUtilities.c
+    echo "Compilation EdSelection terminée"
+else
+    echo "EdSelection existe déjà, pas besoin de compiler"
+fi
