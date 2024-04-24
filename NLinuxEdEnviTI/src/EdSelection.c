@@ -1,6 +1,6 @@
 // ------------------------------------------------------------------
 /**
- * @file EdSimpleScan.c
+ * @file EdSelection.c
  *
  * @brief Example of simple Image Scan 
  * This file is the part "interface with the user" 
@@ -34,7 +34,8 @@
 // ------------------------------------------------------------------
 #include "EdStructures.h"
 #include "EdUtilities.h"
-#include "EdLibThreshold.h"
+#include "EdLibMorphMath.h"
+#include "EdLibHatThreshold.h"
 
 int main(int argc, char **argv)
 {
@@ -43,15 +44,13 @@ int main(int argc, char **argv)
   unsigned char prof = 0;
   FILE	        *fichier = NULL, *fichres = NULL;
   int           ret;
-  int           ith;
-  unsigned char th;
+  int iTh;
+  unsigned char ThL, ThH;
+  
   /* --- USAGE --- */
-  if(argc != 4)
+  if(argc != 5)
   {
-    fprintf(stderr,"USAGE :  SimpleScan image immoy \n");
-    fprintf(stderr,"image : name of the image to filter \n");
-    fprintf(stderr,"immoy : name of the result image \n");
-    fprintf(stderr,"Simple Scan of B&W Image : here simple copy  \n");
+    fprintf(stderr,"USAGE :  Threshold image imTh ThL ThH\n");
     exit(0);
   }
   /* --- Source Image --- */
@@ -65,10 +64,14 @@ int main(int argc, char **argv)
   {
     fprintf(stderr,"Result Image %s Pb of Opening\n",*argv);
     exit(0);
-  }
+  }  
   /* --- Threshold Value --- */
-  ith = atoi(*++argv);
-  th = (unsigned char) ith;
+  iTh = atoi(*++argv);
+  ThL = (unsigned char)iTh;
+  
+  iTh = atoi(*++argv);
+  ThH = (unsigned char)iTh;
+  
   /* --- Reading of Image Header --- */
   if ((ret = Reading_ImageHeader(fichier, &ncol, &nlig, &prof)))
   {
@@ -115,19 +118,26 @@ int main(int argc, char **argv)
     exit(0);
   }
   
-/* --- Example of Simple Scan --- */
-  ret = Threshold (image, imres, th);
+/* --- Threshold --- */
+  ret = HatThreshold (image, imres, ThL, ThH);
   if (ret)
   {
     fprintf(stderr,"Problem of Memory Allocation in Mean Filtering \n");
     exit(0);
   } 
 
+/* --- Erosion --- */
+  ret = Erosion (imres, image);
+  if (ret)
+  {
+    fprintf(stderr,"Problem of Memory Allocation in Mean Filtering \n");
+    exit(0);
+  } 
 /* --- Writing of the Image Result in File --- */
   // Header 
   fprintf(fichres,"P5\n#creating by EdEnviTI\n%d %d\n255\n",(int)ncol, (int)nlig);
   // data 
-  ret = Writing_ImageData(fichres, imres); // Image Pixel Data
+  ret = Writing_ImageData(fichres, image); // Image Pixel Data
   if (!ret)
   {
     fprintf(stderr,"Problem of Writing \n");
@@ -149,5 +159,5 @@ int main(int argc, char **argv)
   fclose (fichier);
   fclose (fichres);
   	
-  fprintf(stderr,"End of SimpleScan Operator\n");
+  fprintf(stderr,"End of Hat Threshold Operator\n");
 }
