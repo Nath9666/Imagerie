@@ -1,0 +1,15 @@
+{
+    "filtrage linéaire": "implique de calculer la nouvelle valeur d'un pixel en fonction d'une combinaison linéaire des valeurs des pixels voisins. Ce calcul se fait à l'aide d'un masque de convolution, qui est essentiellement une grille de pondération.",
+    "bruit dans les images" : "une zone qui semble uniforme à l'œil mais qui n'est pas vraiment uniforme en termes de valeurs, ce qui peut perturber ou altérer la qualité de l'image.",
+    "lissage d'image" : "Diminuer le bruit dans les images sans trop les altérer.",
+    "Zone Homogène" : "autour du pixel courant tel que tous les pixels de ce voisinage ont la même valeur, une valeur constante",
+    "Zone homogène pour un lissage linéaire" : "C'est une zone homogène qui doit rester inchangé",
+    "Filtrage moyen": "Affecter au pixel courant la moyenne des intensités de son voisinage. C'est un filtrage linéaire",
+    "Filtrage Gaussien" : "Affecter au pixel courant la moyenne pondérée des intensités de son voisinage. C'est un filtrage linéaire",
+    "Filtrage médian" : "Affecter au pixel courant la médiane des intensités de son voisinage. C'est un filtrage non linéaire",
+    "Opérateur seuillage classique": "Balayage de données et traitement du pixel courant",
+    "Opérateur seuillage hat": "Sélection d'un mode intermédiaire",
+    "Opérateur seuillage Multiple": "Nombre de modes plus important et séparation / sélection de tous les modes",
+    "Principe d'érosion": "Suppression des pixels de l'objet qui sont sur les bords de l'objet",
+    "Principe de dilatation": "Ajout de pixels à l'objet qui sont sur les bords de l'objet"
+}
